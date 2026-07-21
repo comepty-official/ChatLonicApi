@@ -17,6 +17,11 @@ ALLOWED_HOSTS = [
     "chatlonicapi-production.up.railway.app",
 ]
 
+# Required for Django Admin on Railway
+CSRF_TRUSTED_ORIGINS = [
+    "https://chatlonicapi-production.up.railway.app",
+]
+
 INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
@@ -82,26 +87,17 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# -----------------------------
 # CORS
-# -----------------------------
-
 CORS_ALLOW_ALL_ORIGINS = True
 
-# -----------------------------
 # Django REST Framework
-# -----------------------------
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
 
-# -----------------------------
 # JWT
-# -----------------------------
-
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
