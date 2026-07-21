@@ -10,13 +10,7 @@ DEBUG = True  # Change to False when deploying
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-
-    # Replace with your PC's IP while testing on phones
-    "192.168.1.100",
-
-    # Add your domain after deploying
-    # "api.chatlonic.com",
-    # "chatlonic.onrender.com",
+    "chatlonicapi-production.up.railway.app",
 ]
 
 INSTALLED_APPS = [
