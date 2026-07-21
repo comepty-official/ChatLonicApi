@@ -1,11 +1,15 @@
 from pathlib import Path
 from datetime import timedelta
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-change-this-later"
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-change-this-before-production"
+)
 
-DEBUG = True  # Change to False when deploying
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -78,23 +82,15 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# ---------------------------------------------------
+# -----------------------------
 # CORS
-# ---------------------------------------------------
+# -----------------------------
 
-# For development
 CORS_ALLOW_ALL_ORIGINS = True
 
-# For production, replace the above with:
-#
-# CORS_ALLOWED_ORIGINS = [
-#     "https://chatlonic.com",
-#     "https://www.chatlonic.com",
-# ]
-
-# ---------------------------------------------------
+# -----------------------------
 # Django REST Framework
-# ---------------------------------------------------
+# -----------------------------
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -102,9 +98,9 @@ REST_FRAMEWORK = {
     ),
 }
 
-# ---------------------------------------------------
+# -----------------------------
 # JWT
-# ---------------------------------------------------
+# -----------------------------
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
